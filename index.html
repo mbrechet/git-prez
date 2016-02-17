@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Partage de compétences - GIT</title>
+
+		<meta name="description" content="un petit tour de mon utilisation de GIT">
+		<meta name="author" content="Matthieu Bréchet">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<style type="text/css">
+		.reveal code{
+			font-size:12px;
+			text-align: left;
+			white-space: pre;
+		}
+
+		.reveal .shadow{
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		}
+
+		.reveal pre{
+			line-height: 5px;
+			margin:auto;
+		}
+
+		.reveal h2.top{
+			top:-200px;
+			position: absolute;
+			left: 50%;
+			transform:translateX(-50%);
+		}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="images/Git-logo.png">
+					<h1>Git m'a (enfin) convaincu</h1>
+					<!-- <img src="images/Git-logo.png" width="350"> -->
+					<p>
+						<small>Matthieu Bréchet - Février 2016</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Vos Attentes ?</h2>
+					<img src="images/postit.jpg" width="500">
+					<p>
+						<small>1 post-it par idée  -  2 post-it par personne</small>
+					</p>
+				</section>
+
+
+				<section>
+					<h2 class='top'>Sommaire</h2>
+					<ul>
+						<li>Configuration</li>
+						<li>Vocabulaire</li>
+						<li>How To</li>
+                        <li>Outillage</li>
+						<li>Fonctions avancées</li>
+					</ul>
+				</section>
+
+				<section>
+					<section data-background="#FFF">
+						<h2 style="color:black">Installation & Configuration</h2>
+						<img src="images/installConf.jpg" style="border:none; box-shadow:none">
+					</section>
+
+					<section>
+						<h2>Installation</h2>
+						<p>
+							Sous windows <a href="https://git-for-windows.github.io/">https://git-for-windows.github.io</a><br/>
+							<img src="images/gitbash.png"/> <img src="images/gitgui.png">
+						</p>
+					</section>
+
+					<section>
+						<h2>Configuration</h2>
+						<ul>
+						<li>
+							Paramétrage user & mail
+							<pre>
+							<code class="hljs">$ git config --global user.name "John Doe"</code>
+							<code class="hljs">$ git config --global user.email johndoe@example.com</code>
+							</pre>
+						</li>
+						<li>
+							Proxy
+							<pre>
+							<code class="hljs">$ git config --global http.proxy http://user:pass@proxyhost:proxyport</code>
+							</pre>
+						</li>
+						<li>
+							Suppression de paramètre avec l'option
+							<pre><code class="hljs">$ git config --global --unset http.proxy</code></pre>
+						</li>
+						<li>
+							Formatage et espaces blancs
+							<pre><code class="hljs">$ git config --global core.autocrlf true (windows)</code>
+							<code class="hljs">$ git config --global core.autocrlf input (mac/linux)</code></pre>
+
+						</li>
+						<li>
+							Véfification de la configuration globale
+							<pre><code class="hljs">$ git config --global -l</code></pre>
+						</li>
+						<li>
+							Edition du fichier de config global .gitconfig
+						</li>
+						</ul>
+					</section>
+
+				</section>
+                
+                <section>
+                    <section data-background="images/Words.jpg">
+                        <h2 class="shadow">Un peu de vocabulaire</h2>
+                    </section>
+                    <section>
+                        <h2>CLONE</h2>
+                        <pre><code class="hljs">git clone https://{adressse} {nom_de_dossier]</code></pre>
+                    </section>
+                    <section>
+                        <h2>commit</h2>
+                        <pre><code class="hljs">git commit -m "message de commit"</code></pre>
+                        <ul>
+                            <li>n'est pas identique au commit 'svn'</li>
+                            <li>Peut être modifié</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>push</h2>
+                        <pre><code class="hljs">git push</code></pre>
+                        <ul>
+                            <li>envoie les modifications de la branche locale vers le serveur</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Fetch</h2>
+                        <pre><code class="hljs">git push</code></pre>
+                        <ul>
+                            <li>liste les modifications de la branche d'origine</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>rebase</h2>
+                        <ul>
+                            <li>Très utile pour récupérer les modifications distantes sans perdre ses commit locaux (cf utilisation)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Pull</h2>
+                        <ul>
+                            <li>rapatrie & merge toutes les modifications distantes dans la branche locale</li>
+                        </ul>
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <img src="images/how-to.jpg"/>
+                    </section>
+                    
+                    <section>
+                        <h2>Fonctionnement des branches</h2>
+                    </section>
+                    <section>
+                        <h2>Différence avec SVN</h2>
+                        <ul>
+                            <li>tout est histoire de branche</li>
+                            <li>beaucoup plus rapide</li>
+                            <li>se créé en local</li>
+                        </ul>
+                    </section>
+                   
+                    
+                     <section>
+                       <img src="images/git-graphic-01.png" style="margin:0px; background-color:white;border:0px; box-shadow:none;"/>
+                    </section>
+                    <section>
+                       <img src="images/git-howto.png" style="margin:0px; background:none;border:0px; box-shadow:none;"/>
+                    </section>
+                     <section>
+                       <img src="images/ak5Mf.jpg" style="margin:0px; background:none;border:0px; box-shadow:none;"/>
+                    </section>
+                    
+                     <section>
+                        <h2>Git Flow</h2>
+                         <ul>
+                            <li>Un principe en plus d'un logiciel</li>
+                            <li>est intégré à source tree</li>
+                        </ul>
+                    </section>
+                     <section>
+                        <h2>Gestion des TAGs</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Branche</th>
+                                    <th>Utilisation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Development</td>
+                                    <td>Branche sur laquelle le code courant est sauvegardé</td>
+                                </tr>
+                                <tr>
+                                    <td>Master</td>
+                                    <td>Version du dernier tag</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <br/>
+                        <small>
+                            <pre><code class="hljs">git tag {nom_du_tag}</code></pre><br/>
+                            par défaut le tag n'est pas envoyé sur la branche distante
+                        </small>
+                       </section>
+                       <section>
+                            <h2>Bien géré les mises à jour du code</h2>
+                            <img src="images/wrong-merge.png"/>
+                            <ol>
+                                <li>Fetch (pour voir les modifs)</li>
+                                <li>Commit des fonctinalités locales terminées</li>
+                                <li>Stash du code non terminé à garder</li>
+                                <li>Rebase a partir du commit distant que l'on veut récupérer</li>
+                                <li>Si conflit résoudre les conflits avec l'outil externe (P4Merge)</li>
+                                <li>Push des modifications</li>
+                            </ol>
+                        </section>
+                </section>
+                
+                <section>
+                    <section data-background="images/tools.jpg">
+                        <h2 class="shadow">Quel Outillage ?</h2>
+                    </section>
+                    <section>
+                        <h2>IHM</h2>
+                        <img src="images/sourcetree_icon.png"/>
+                    </section>
+                    <section>
+                        <h2>intégration dans IDE</h2>  
+                        <ul>
+                            <li>Sublime Text : git gutter <br>
+                                <img src="images/git_gutter.png" style="height:150px"/>
+                            </li>
+                            <li>Visual Studio Code : intégration native
+                                <img src="images/vs_code.png" style="height:200px"/>
+                            </li>
+                            <li>Atom : intégration native</li>
+                        </ul>
+                    </section>
+                    
+                </section>
+
+                
+                <section>
+                    <section>
+                        <h2>Fonctions avancées</h2>
+                    </section>
+                    <section>
+                        <h2>Formatage et espaces blancs</h2>
+                        <pre><code class="hljs">core.autocrlf={value}</code></pre>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Système</th><th>valeur</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Windows</td><td>true</td>
+                                </tr>
+                                <tr>
+                                    <td>Mac/Linux</td><td>input</td>
+                                </tr>
+                            </tbody>
+                         </table>
+                         
+                    </section>
+                    <section>
+                        <h2>Passage de SVN vers git</h2>
+                    </section>
+                    
+                    <section>
+                        <h2>Blame</h2>
+                    </section>
+                    
+                </section>
+                
+                <section>
+                    <h2>Références</h2>
+                    <ul>
+                        <li>la référence : <a href="https://git-scm.com/docs/">https://git-scm.com/docs/</a></li>
+                        <li>un memo <a href="https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf">https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf</a></li>
+                        <li>Pro-git <a href="https://www.gitbook.com/book/gitbookio/progit">https://www.gitbook.com/book/gitbookio/progit</a></li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Merci !</h2>
+                </section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
