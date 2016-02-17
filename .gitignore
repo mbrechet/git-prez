@@ -2,6 +2,7 @@
 .svn
 log/*.log
 tmp/**
+.vscode/**
 node_modules/
 .sass-cache
 css/reveal.min.css
